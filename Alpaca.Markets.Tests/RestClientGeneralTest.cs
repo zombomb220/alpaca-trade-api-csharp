@@ -1,10 +1,12 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 using System;
 using System.Linq;
 using Xunit;
 
 namespace Alpaca.Markets.Tests
 {
-    public sealed class RestClientGeneralTest
+    public sealed class RestClientGeneralTest : IDisposable
     {
         private readonly RestClient _restClient = ClientsFactory.GetRestClient();
 
@@ -112,6 +114,11 @@ namespace Alpaca.Markets.Tests
             Assert.True(first.TradingDate <= last.TradingDate);
             Assert.True(first.TradingOpenTime < first.TradingCloseTime);
             Assert.True(last.TradingOpenTime < last.TradingCloseTime);
+        }
+
+        public void Dispose()
+        {
+            _restClient?.Dispose();
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System;
 using System.Linq;
 using Xunit;
 
 namespace Alpaca.Markets.Tests
 {
-    public sealed class RestClientMarketDataTest
+    public sealed class RestClientMarketDataTest : IDisposable
     {
         private readonly RestClient _restClient = ClientsFactory.GetRestClient();
 
@@ -114,6 +116,11 @@ namespace Alpaca.Markets.Tests
 
             Assert.NotNull(fundamental);
             Assert.Equal("AAPL", fundamental.Symbol);
+        }
+
+        public void Dispose()
+        {
+            _restClient?.Dispose();
         }
     }
 }

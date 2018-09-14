@@ -1,9 +1,11 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 using System;
 using Xunit;
 
 namespace Alpaca.Markets.Tests
 {
-    public sealed class RestClientPolygonTest
+    public sealed class RestClientPolygonTest : IDisposable
     {
         private readonly RestClient _restClient = ClientsFactory.GetRestClient();
 
@@ -104,6 +106,11 @@ namespace Alpaca.Markets.Tests
 
             Assert.NotNull(conditionMap);
             Assert.NotEmpty(conditionMap);
+        }
+
+        public void Dispose()
+        {
+            _restClient?.Dispose();
         }
     }
 }

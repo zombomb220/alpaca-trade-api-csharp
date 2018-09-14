@@ -1,4 +1,6 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System;
 using System.Collections.Concurrent;
 using System.Threading;
 
@@ -79,8 +81,8 @@ namespace Alpaca.Markets
         /// <inheritdoc />
         public void Dispose()
         {
-            _semaphore.Dispose();
-            _exitTimer.Dispose();
+            _semaphore?.Dispose();
+            _exitTimer?.Dispose();
         }
 
         /// <inheritdoc />

@@ -1,10 +1,12 @@
-﻿using System;
+﻿// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System;
 using System.Threading;
 using Xunit;
 
 namespace Alpaca.Markets.Tests
 {
-    public sealed class NatsClientTest
+    public sealed class NatsClientTest : IDisposable
     {
         private readonly RestClient _restClient = ClientsFactory.GetRestClient();
 
@@ -149,6 +151,11 @@ namespace Alpaca.Markets.Tests
 
                 client.Close();
             }
+        }
+
+        public void Dispose()
+        {
+            _restClient?.Dispose();
         }
     }
 }
